@@ -1,0 +1,150 @@
+ # Given data
+> A <- c(18, 2, 20)
+> B <- c(22, 28, 10)
+> C <- c(20, 40, 40)
+> 
+> 
+> # Q1(i) Sample covariance between B and C
+> 
+> 
+> cov_BC <- cov(B, C)
+> 
+> print(cov_BC)
+[1] -20
+> 
+> 
+> 
+> # Q1(ii) Sample covariance matrix
+> 
+> data <- cbind(A, B, C)
+> 
+> cov_matrix <- cov(data)
+> 
+> print(cov_matrix)
+          A   B         C
+A  97.33333 -74 -46.66667
+B -74.00000  84 -20.00000
+C -46.66667 -20 133.33333
+> 
+> 
+> 
+> # Q1(iii) Sample correlation between B and C
+> 
+> 
+> cor_BC <- cor(B, C)
+> 
+> print(cor_BC)
+[1] -0.1889822
+> 
+> 
+> 
+> # Q1(iv) Sample correlation matrix
+> 
+> 
+> cor_matrix <- cor(data)
+> 
+> print(cor_matrix)
+           A          B          C
+A  1.0000000 -0.8183918 -0.4096440
+B -0.8183918  1.0000000 -0.1889822
+C -0.4096440 -0.1889822  1.0000000
+> # LAB - DAY 2
+> 
+> # Q2. EQUAL-FREQUENCY PARTITIONING AND DATA SMOOTHING
+> 
+> # Given data
+> 
+> prices <- c(1, 1, 5, 5, 5, 5, 5, 8, 8,
++             10, 10, 10, 10, 12, 14, 14, 14,
++             15, 15, 15, 15, 15, 15,
++             18, 18, 18, 18, 18, 18, 18, 18,
++             20, 20, 20, 20, 20, 20, 20,
++             21, 21, 21, 21,
++             25, 25, 25, 25, 25,
++             28, 28, 30, 30, 30)
+> 
+> 
+> # Q2(i) Equal-Frequency Partitioning
+> # 3 bins
+> 
+> bin1 <- prices[1:17]
+> bin2 <- prices[18:34]
+> bin3 <- prices[35:52]
+> 
+> print(bin1)
+ [1]  1  1  5  5  5  5  5  8  8 10 10 10 10 12 14 14 14
+> print(bin2)
+ [1] 15 15 15 15 15 15 18 18 18 18 18 18 18 18 20 20 20
+> print(bin3)
+ [1] 20 20 20 20 21 21 21 21 25 25 25 25 25 28 28 30 30 30
+> 
+> 
+> # Q2(ii) Data Smoothing using Bin Means
+> 
+> mean1 <- mean(bin1)
+> mean2 <- mean(bin2)
+> mean3 <- mean(bin3)
+> 
+> smooth_mean <- c(
++   rep(mean1, length(bin1)),
++   rep(mean2, length(bin2)),
++   rep(mean3, length(bin3))
++ )
+> 
+> print(smooth_mean)
+ [1]  8.058824  8.058824  8.058824  8.058824  8.058824  8.058824  8.058824  8.058824
+ [9]  8.058824  8.058824  8.058824  8.058824  8.058824  8.058824  8.058824  8.058824
+[17]  8.058824 17.294118 17.294118 17.294118 17.294118 17.294118 17.294118 17.294118
+[25] 17.294118 17.294118 17.294118 17.294118 17.294118 17.294118 17.294118 17.294118
+[33] 17.294118 17.294118 24.166667 24.166667 24.166667 24.166667 24.166667 24.166667
+[41] 24.166667 24.166667 24.166667 24.166667 24.166667 24.166667 24.166667 24.166667
+[49] 24.166667 24.166667 24.166667 24.166667
+> 
+> 
+> # Q2(ii) Data Smoothing using Bin Boundaries
+> 
+> lower1 <- min(bin1)
+> upper1 <- max(bin1)
+> 
+> lower2 <- min(bin2)
+> upper2 <- max(bin2)
+> 
+> lower3 <- min(bin3)
+> upper3 <- max(bin3)
+> 
+> smooth_boundary1 <- ifelse(
++   abs(bin1 - lower1) <= abs(bin1 - upper1),
++   lower1,
++   upper1
++ )
+> 
+> smooth_boundary2 <- ifelse(
++   abs(bin2 - lower2) <= abs(bin2 - upper2),
++   lower2,
++   upper2
++ )
+> 
+> smooth_boundary3 <- ifelse(
++   abs(bin3 - lower3) <= abs(bin3 - upper3),
++   lower3,
++   upper3
++ )
+> 
+> smooth_boundary <- c(
++   smooth_boundary1,
++   smooth_boundary2,
++   smooth_boundary3
++ )
+> 
+> print(smooth_boundary)
+ [1]  1  1  1  1  1  1  1 14 14 14 14 14 14 14 14 14 14 15 15 15 15 15 15 20 20 20 20
+[28] 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 30 30 30 30 30
+> 
+> 
+> # Q2(iii) Histogram
+> 
+> hist(prices,
++      breaks = c(0, 15, 20, 30),
++      main = "Histogram of All Electronics Prices",
++      xlab = "Price",
++      ylab = "Frequency")
