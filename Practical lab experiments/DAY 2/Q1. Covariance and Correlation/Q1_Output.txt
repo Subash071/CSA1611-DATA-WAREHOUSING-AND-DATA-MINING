@@ -1,0 +1,44 @@
+> # Q1(i) Sample covariance between B and C
+> 
+> 
+> cov_BC <- cov(B, C)
+> 
+> print(cov_BC)
+[1] -20
+> 
+> 
+> 
+> # Q1(ii) Sample covariance matrix
+> 
+> data <- cbind(A, B, C)
+> 
+> cov_matrix <- cov(data)
+> 
+> print(cov_matrix)
+          A   B         C
+A  97.33333 -74 -46.66667
+B -74.00000  84 -20.00000
+C -46.66667 -20 133.33333
+> 
+> 
+> 
+> # Q1(iii) Sample correlation between B and C
+> 
+> 
+> cor_BC <- cor(B, C)
+> 
+> print(cor_BC)
+[1] -0.1889822
+> 
+> 
+> 
+> # Q1(iv) Sample correlation matrix
+> 
+> 
+> cor_matrix <- cor(data)
+> 
+> print(cor_matrix)
+           A          B          C
+A  1.0000000 -0.8183918 -0.4096440
+B -0.8183918  1.0000000 -0.1889822
+C -0.4096440 -0.1889822  1.0000000
