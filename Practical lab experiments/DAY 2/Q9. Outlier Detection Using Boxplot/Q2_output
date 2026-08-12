@@ -1,0 +1,6 @@
+# Find Outliers
+> 
+> outliers <- boxplot.stats(points)$out
+> 
+> print(outliers)
+[1] 35
