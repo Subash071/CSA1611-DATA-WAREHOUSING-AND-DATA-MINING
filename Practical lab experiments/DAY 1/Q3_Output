@@ -1,0 +1,18 @@
+# Given data
+> 
+> x <- c(200, 300, 400, 600, 1000)
+> 
+> # (a) Min-Max Normalization
+> 
+> min_max_norm <- (x - min(x)) / (max(x) - min(x))
+> 
+> min_max_norm
+[1] 0.000 0.125 0.250 0.500 1.000
+> 
+> # (b) Z-Score Normalization
+> 
+> z_score_norm <- (x - mean(x)) / sd(x)
+> 
+> z_score_norm
+[1] -0.9486833 -0.6324555 -0.3162278  0.3162278  1.5811388
+> 
