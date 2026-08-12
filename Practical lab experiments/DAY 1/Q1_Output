@@ -1,0 +1,13 @@
+> # Age and frequency
+> 
+> age <- c(5, 15, 20, 50, 80, 110)
+> 
+> frequency <- c(200, 450, 300, 1500, 700, 44)
+> 
+> # Calculate median
+> 
+> median(age)
+[1] 35
+> 
+> median(frequency)
+[1] 375
